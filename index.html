@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>书觅院 - Meet Your Books!</title>
+  <link rel="stylesheet" href="./css/mdui.min.css"/>
+  <link rel="stylesheet" href="./css/layui.css">
+  <link rel="stylesheet" href="./iconfont.css">
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    html{
+
+    }
+    body{
+      background-image:url("https://tu.ltyuanfang.cn/api/fengjing.php");
+    }
+    .icon{
+      width:100%;
+      height: 170px;
+      position: relative;
+      
+    }
+    .icon-main{
+      position: absolute;
+      bottom: 0px;
+      margin-left: 42.55952380952381%;
+      height: 100px;
+      width: 300px;
+      border-radius: 13px;
+      -webkit-backdrop-filter: blur(5px);    
+      backdrop-filter: blur(5px); 
+      background: white;
+      opacity:0.8;
+    }
+    .search{
+      -webkit-backdrop-filter: blur(5px);    
+      backdrop-filter: blur(5px); 
+      background: white;
+      opacity:0.7;
+      border-radius: 13px;
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    #searchtext{
+      position: relative;
+      display: inline-block;
+      bottom: -8px;
+      width: 500px;
+      padding-top: 0px;
+      top: -21px;
+      padding-left: 14px;
+    }
+    .mdui-select.mdui-select-position-bottom{
+
+      width: 100px;
+      bottom: 0px;
+      display: inline-block;
+    }
+    .searchmain{
+      display: flex;
+      justify-content: center;
+    }
+    #submit{
+      width: 10px;
+      display: inline-block;
+      border-top-right-radius: 13px;
+      border-bottom-right-radius: 13px;
+    }
+    .ranks{
+      display: block;
+      color:#00F;
+    }
+    .rank-main{
+      display: flex;
+      justify-content: center;
+      margin-top: 100px;
+    }
+    .mdui-col{
+      border-width: 1px;
+      border: #00F;
+    }
+
+  </style>
+</head>
+<body class="mdui-theme-accent-blue">
+
+<!-- 顶部导航栏 -->
+
+  <ul class="layui-nav  mdui-ripple layui-bg-cyan">
+    <li class="layui-nav-item mdui-hoverable" >
+      <a href="">测试<span class="layui-badge" style="display:block;margin-top:-17px;margin-left:20px;opacity:0.6;width:15px;height:15px;margin-buttom:0px;font-size:12px;padding-right:0px;padding-left:0px;text-align:center;">9</span></a>
+    </li>
+
+    <li class="layui-nav-item mdui-hoverable">
+      <a href=""><i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF;"></i>样式2<div class="layui-badge-dot"></div></a>
+    </li>
+
+    <li class="layui-nav-item mdui-hoverable">
+      <a href="">
+        <span class="iconfont icon-shejiaotubiao-48"></span>
+      </a>
+      <dl class="layui-nav-child">
+        <dd><a href="javascript:;">修改信息</a></dd>
+        <dd><a href="javascript:;">安全管理</a></dd>
+        <dd><a href="javascript:;">退了</a></dd>
+      </dl>
+    </li>
+  </ul>
+
+<!-- 主体div -->
+  <div class="main">
+    <div class="icon" >
+      <img src="https://pic.imgdb.cn/item/61e17c9d2ab3f51d919088cb.png" class="icon-main mdui-shadow-24" id="icon-maina"/>
+      <script>
+        let i = document.getElementById("icon-maina");
+        let marginsum=((document.body.clientWidth-300)/document.body.clientWidth)*50;
+        i.style.marginLeft= marginsum+"%";
+      </script>
+    </div>
+    <div class="searchmain">
+      <div class="search mdui-hoverable mdui-color-black-100" style="border-left-width: 1px;border-left-style: solid;border-top-width: 1px;border-top-style: solid;border-bottom-width: 1px;border-bottom-style: solid;border-right-width: 1px;border-right-style: solid;margin-top: 50px;padding-top: 17px;height: 45px;padding-left: 15px;padding-bottom: 4px;width: 651px;">
+        <select name="city" lay-verify="" class="mdui-select" mdui-select="{position: 'bottom'}" >
+          <option value="1"><i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF;"></i>  
+              聚合</option>
+          <option value="2">豆瓣</option>
+          <option value="3">上海</option>
+          <option value="4">杭州</option>
+        </select>
+        <div class="mdui-textfield mdui-textfield-floating-label" id="searchtext" style="top: -17px;">
+          <label class="mdui-textfield-label" style="padding-top:0px">在这里输入书名/ISBN检索图书</label>
+          <input class="mdui-textfield-input" />
+        </div>
+        <div style="height: 50px;">
+          <button class="mdui-btn mdui-ripple" id="submit" style="padding-left: 0px;padding-right: 0px;margin-top: -19px;height:70px;">
+            <i class="layui-icon layui-icon-search" style="width: 50px;height: 47px;padding-top: 15px;font-size: 40px;display: inline-block;"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="ranks">
+      <div class="rank-main">
+        <div class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3 mdui-row-lg-3">
+          <div class="mdui-col">5</div>
+          <div class="mdui-col">5</div>
+          <div class="mdui-col">5</div>
+          <div class="mdui-col">5</div>
+          <div class="mdui-col">5</div>
+          <div class="mdui-col">5</div>
+          <div class="mdui-col">5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="./js/mdui.min.js"></script>
+<script src="./layui.js"></script>
+<script>
+  "use strict"
+  
+  //api fetch
+  function getbac(){
+    $.ajax({
+      type: 'POST',
+      dataType:'JSONP',
+     url: 'https://api.codelife.cc/infinity/random-wallpaper',
+     data: { t: Math.random(1111111111111,2222222222222)},
+     success:function(data) {
+      var obj = JSON.stringify(data);; 
+      return obj;
+     }
+    })
+  }
+
+
+//一般直接写在一个js文件中
+window.addEventListener("resize",function(){
+  let marginsum=((document.body.clientWidth-300)/document.body.clientWidth)*50;
+  i.style.marginLeft= marginsum+"%";
+});
+
+
+layui.use(['layer', 'form','laydate','element'], function(){
+  
+  let layer = layui.layer
+  ,form = layui.form
+  ,element = layui.element
+  ,laydate=layui.laydate;
+
+  let loading = layer.load(1, {
+    shade: false,
+    time: 1*1000
+    });
+  
+});
+
+</script> 
+</body>
+</html>
