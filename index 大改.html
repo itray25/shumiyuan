@@ -1415,11 +1415,11 @@
       document.getElementById("year").innerHTML = daylist[da - 1];
     }
 
-    $.getJSON("https://api.djapi.cn/wannianli/get?token=ee18a798c2caf99085ee72a10482fdb8", function (result) {
+    $.getJSON("https://api.djapi.cn/wannianli/get?token=482fdb8", function (result) {
       $("#info").html((result.Result.nongli).slice(0, result.Result.nongli.length - 6));
     });
     var eh;
-    $.getJSON("https://v2.alapi.cn/api/eventHistory?token=d8oLAGFCR4tPdmWX", function (result) {
+    $.getJSON("https://v2.alapi.cn/api/eventHistory?token=dtPdmWX", function (result) {
       eh = result.data;
     });
     //end
@@ -1441,7 +1441,7 @@
     }
 
     function getss() {
-      $.getJSON("https://v2.alapi.cn/api/tophub/get?type=sspai&token=ezzBqaNJCWror0cG", function (result) {
+      $.getJSON("https://v2.alapi.cn/api/tophub/get?type=sspai&token=G", function (result) {
         $("#tit").text(result.data.name);
         for (let lsvar2 = 1; lsvar2 <= 7; lsvar2++) {
           $(`#r${lsvar2}2`).attr("onclick", "window.open(\"" + result.data.list[lsvar2 - 1].link + "\")");
@@ -1464,19 +1464,19 @@
       }, 50);
     }, 50);
     document.getElementById("xinlang").addEventListener("mouseover", function () {
-      getData("https://v2.alapi.cn/api/tophub/get?type=xl&token=ezzBqaNJCWror0cG");
+      getData("https://v2.alapi.cn/api/tophub/get?type=xl&token=ecG");
     })
     document.getElementById("baidu").addEventListener("mouseover", function () {
-      getData("https://v2.alapi.cn/api/tophub/get?type=baidu&token=ezzBqaNJCWror0cG");
+      getData("https://v2.alapi.cn/api/tophub/get?type=baidu&token=ezcG");
     })
     document.getElementById("sspai").addEventListener("mouseover", function () {
       getss();
     })
     document.getElementById("52pojie").addEventListener("mouseover", function () {
-      getData("https://v2.alapi.cn/api/tophub/get?type=52pojie&token=ezzBqaNJCWror0cG");
+      getData("https://v2.alapi.cn/api/tophub/get?type=52pojie&token=ezG");
     })
     document.getElementById("bilibili").addEventListener("mouseover", function () {
-      getData("https://v2.alapi.cn/api/tophub/get?type=bilibili&token=ezzBqaNJCWror0cG");
+      getData("https://v2.alapi.cn/api/tophub/get?type=bilibili&token=ezG");
     })
 
     $(document).ready(function () {
@@ -1495,7 +1495,7 @@
       $(".ant-fullcalendar-header").css({ "position": "absolute", "width": "261px", "background-color": "white", "border-radius": "5px", "z-index": "4", "left": "-26px", "padding-left": "3px", "padding-right": "3px", "padding-top": "3px", "padding-bottom": "3px", "top": "140px", "display": "none", })
 
 
-      getData("https://v2.alapi.cn/api/tophub/get?type=baidu&token=ezzBqaNJCWror0cG");
+      getData("https://v2.alapi.cn/api/tophub/get?type=baidu&token=ecG");
       var im = -1;
       var xa;
 
