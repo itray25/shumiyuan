@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>书觅院 - Meet Your Books!</title>
+  <!-- import stylesheet -->
+
+
+  <link href="./css/mdui.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/xxx/jquery.raty.css">
+  <link rel="stylesheet" href="./iconfont.css">
+  <link rel="stylesheet" href="./css/clock.css">
+  <link rel="stylesheet" type="text/css" href="./css/antd.css">
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    .dgnum {
+      position: absolute;
+      top: 5px;
+      z-index: 1;
+      width: 50px;
+      height: 30px;
+      background: #fafafa;
+      border-radius: 5px;
+      font-size: 22px;
+      text-align: center;
+      left: 5px;
+      color: cadetblue;
+    }
+
+    .dgclass {
+      position: absolute;
+      font-size: 18px;
+      top: 100px;
+      left: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dgau {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+
+    .dgdisc {
+      position: absolute;
+      top: 80px;
+      background: white;
+      width: 230px;
+      left: 13px;
+      height: 180px;
+    }
+
+    .dgti {
+      font-size: 25px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: white;
+      position: absolute;
+      padding-left: 20px;
+      border-radius: 0 5px 5px 0;
+      padding-right: 10px;
+      top: 20px;
+      width: 250px;
+    }
+
+    .dgimg {
+      margin: 10px;
+      height: 285px;
+      width: 180px;
+      border-radius: 10px;
+      position: absolute;
+      background-color: white;
+    }
+
+    .dgright {
+      display: inline-block;
+      height: 310px;
+      width: 260px;
+      position: absolute;
+      background: rgb(249, 243, 239);
+      left: 200px;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .dgleft {
+      display: inline-block;
+      width: 200px;
+      height: 310px;
+      border-radius: 10px 0 0 10px;
+      position: absolute;
+      background-color: #03A9F4;
+    }
+
+    .dgurl {
+      width: 50px;
+      height: 25px;
+      position: absolute;
+      background: rgb(250, 181, 36);
+      border-radius: 5px;
+      position: absolute;
+      top: 275px;
+      left: 190px;
+      text-align: center;
+      line-height: 26px;
+      color: black;
+      cursor: pointer;
+      transition: color .5s;
+    }
+
+    .dgmain {
+      position: relative;
+      margin: 20px 20px 20px 20px;
+      height: 310px;
+      width: 460px;
+      border-radius: 10px;
+      box-shadow: 0 8px 12px rgba(0, 173, 253, 0.151)
+    }
+
+    .dgyear {
+      display: inline-block;
+      font-size: 16px;
+      margin-left: 5px;
+      position: absolute;
+      top: 53px;
+      left: 150px;
+    }
+
+    #diji {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      display: block;
+      top: 0px;
+      z-index: -10;
+    }
+
+    html::-webkit-scrollbar {
+      display: none;
+    }
+
+    .rrra {
+      transition: color .5s;
+    }
+
+    .rrra:hover {
+      transition: color .5s;
+      color: rgb(255, 0, 179);
+    }
+
+    .ant-fullcalendar-month-select {
+      display: inline-block;
+      width: 70px;
+    }
+
+    .ant-affix {
+      right: 0px !important;
+    }
+
+    .ant-radio-group.ant-radio-group-outline.ant-radio-group-small {
+      display: inline-block;
+    }
+
+    .ant-fullcalendar-tbody {
+      top: -5px !important;
+    }
+
+    .ivu-icon-md-albums {
+      font-size: 30px !important;
+    }
+
+
+
+    .butts {
+      margin-top: 3px;
+    }
+
+    .wrap {
+      border-radius: 5px;
+      background: white;
+      padding-top: 5px;
+      padding-bottom: 10px;
+    }
+
+    .weiyuansu {
+      opacity: 1;
+    }
+
+    html {
+      scrollbar-width: none;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      background-image: url("https://api.btstu.cn/sjbz/api.php?lx=fengjing&format=images");
+      background-repeat: no-repeat;
+      background-size: 2000px auto;
+      scroll-behavior: smooth;
+    }
+
+    @font-face {
+      font-family: dsdigi;
+      src: url('./font/123.ttf') format('truetype');
+    }
+
+    .icon {
+      width: 100%;
+      height: 150px;
+      position: relative;
+
+    }
+
+    .icon-main {
+      position: absolute;
+      bottom: 0px;
+      margin-left: 42.55952380952381%;
+      height: 100px;
+      width: 300px;
+      border-radius: 13px;
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      background: white;
+      opacity: 0.8;
+    }
+
+    .search {
+      -webkit-backdrop-filter: blur(50px);
+      backdrop-filter: blur(5px);
+      background: #ffffffbe;
+      opacity: 1;
+      border-radius: 13px;
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      transition: opacity .5s;
+    }
+
+    .search:hover {
+      opacity: 1;
+    }
+
+    #searchtext {
+      position: relative;
+      display: inline-block;
+      bottom: -9px;
+      width: 500px;
+      padding-top: 0px;
+      top: -18px;
+      padding-left: 14px;
+    }
+
+    .mdui-select.mdui-select-position-bottom {
+
+      width: 100px;
+      bottom: 0px;
+      display: inline-block;
+    }
+
+    .searchmain {
+      display: flex;
+      justify-content: center;
+    }
+
+    #submit {
+      width: 10px;
+      display: inline-block;
+      border-top-right-radius: 13px;
+      border-bottom-right-radius: 13px;
+    }
+
+    .ranks {
+      display: block;
+      color: #00F;
+      height: 600px;
+    }
+
+    .rank-main {
+      display: flex;
+      justify-content: center;
+      margin-top: 70px;
+      position: relative;
+      z-index: -2;
+    }
+
+    .mdui-col {
+
+      height: 270px;
+      padding-top: 15px;
+      padding-bottom: 10px;
+      padding-left: 50px;
+      padding-right: 50px;
+      border-radius: 40px;
+      z-index: -2;
+      grid-column: span 3;
+      grid-row: span 2;
+    }
+
+    #rows {
+      display: grid;
+      z-index: -2;
+      grid-template-columns: repeat(auto-fill, 166.67px);
+      grid-template-rows: repeat(auto-fill, 130px);
+      justify-content: center;
+      position: absolute;
+      width: 90%;
+    }
+
+    #zd {
+      display: none;
+    }
+
+    .obj {
+
+      width: 400px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      -webkit-backdrop-filter: blur(50px);
+      backdrop-filter: blur(50px);
+      background: #0000003b;
+      opacity: 1;
+      z-index: -1;
+    }
+
+
+
+    .mdui-select-menu {
+      z-index: 99999;
+    }
+
+    .but {
+      cursor: pointer;
+      border-radius: 3px;
+      background-color: rgb(72, 71, 71);
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+      text-align: center;
+      color: white;
+      transition: .5s;
+      -webkit-transition: .5s;
+    }
+
+    .but:hover {
+      background-color: rgb(57, 202, 202);
+      transition: .5s;
+      -webkit-transition: .5s;
+    }
+
+    .rankys {
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      height: 17px;
+    }
+
+    .rannum {
+      border-radius: 3px;
+      width: 13px;
+      text-align: center;
+      display: inline-block;
+      position: absolute;
+      line-height: 17px;
+      height: 17px;
+    }
+
+    .raninf {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 260px;
+      padding-left: 23px;
+      transition: color .5s;
+    }
+
+    .raninf:hover {
+      color: cyan;
+      cursor: pointer;
+      transition: color .5s;
+    }
+
+    .raninf2 {
+      display: inline-block;
+      transition: color .5s;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 230px;
+      padding-left: 23px;
+      line-height: 21.7px;
+    }
+
+    .raninf2:hover {
+      color: cyan;
+      transition: color .5s;
+      cursor: pointer;
+    }
+
+    .ranredu {
+      display: inline-block;
+      position: absolute;
+      right: 10px;
+    }
+
+    #dateleft {
+      height: 230px;
+      width: 150px;
+      display: inline-block;
+      position: absolute;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-right: 1px solid rgba(0, 0, 0, 0.43);
+    }
+
+    #dateright {
+      height: 250px;
+      width: 250px;
+      display: inline;
+      position: absolute;
+      left: 150px;
+
+    }
+
+    #date-big {
+      width: 110px;
+      height: 110px;
+      position: absolute;
+      left: 18.05px;
+      top: 20px;
+      border-radius: 10px;
+      background-color: white;
+      border: 1px solid rgba(0, 0, 0, 0.43);
+    }
+
+    #timee {
+      position: absolute;
+      height: 20px;
+      color: #2c77d9;
+      left: 10px;
+      top: 70px;
+      font-family: dsdigi;
+      font-size: 23px;
+    }
+
+    #app {
+      position: absolute;
+      text-align: center;
+      color: white;
+      font-size: 13px;
+      margin-left: 18.05px;
+      margin-right: 18.05px;
+      top: 150px;
+      background-color: #63a94a;
+      border-radius: 6px;
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+
+    #date {
+      position: absolute;
+    }
+
+    #year {
+      position: absolute;
+      top: 12px;
+      left: 0px;
+      right: 125px;
+      padding-left: 0px;
+      border-radius: 7px;
+      background: #2c77d9;
+      margin-left: 20px;
+      color: white;
+      text-align: center;
+      height: 28px;
+      width: 70px;
+      padding-top: 4px;
+    }
+
+    #app2 {
+      position: absolute;
+    }
+
+    #date {
+      right: 20px;
+      top: 50px;
+      border-radius: 5px;
+      background: white;
+      height: 140px;
+      width: 210px;
+      position: absolute;
+    }
+
+    #layui-laydate1 {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    .layui-laydate-header {
+      display: none;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tbody {
+      position: absolute;
+      left: 0px;
+      top: 5px;
+    }
+
+    th,
+    td {
+      width: 30px;
+      height: 22px;
+      text-align: center;
+    }
+
+    #info {
+      height: 28px;
+      background: orange;
+      border-radius: 5px;
+      position: absolute;
+      width: 130px;
+      top: 12px;
+      padding-top: 4px;
+      left: 100px;
+      color: white;
+      text-align: center;
+    }
+
+    #others {
+      border-radius: 3px;
+      width: 200px;
+    }
+
+    #app2 {
+      width: 210px;
+      left: 20px;
+
+      top: 203px;
+      border-radius: 5px;
+      background: #8622ab;
+      text-align: center;
+      color: white;
+      padding-top: 6px;
+    }
+
+    .coenter {
+      height: 0px;
+      margin: 0px;
+      border-radius: 10px;
+      background: #ffffff00;
+      transition: 0.5s cubic-bezier(.83, -0.31, .25, 1.31);
+      font-size: 18px;
+      line-height: 40px;
+
+    }
+
+    #enter {
+      position: absolute;
+      width: 678px;
+      left: -1px;
+      background: #ffffffd8;
+      border-radius: 10px;
+      top: 70px;
+      overflow: hidden;
+      transition: 0.5s;
+      backdrop-filter: blur(10px);
+    }
+
+    .weiyuansu {
+      width: 100%;
+      height: 100%;
+      background: #00000026;
+      border-radius: 10px;
+      backdrop-filter: blur(50px);
+      opacity: 1;
+      position: absolute;
+    }
+
+    .ivu-tooltip-popper {
+      z-index: 10000000;
+    }
+
+    #yiyan {
+      border-radius: 6px;
+      top: 3px;
+      background: #67bc2d;
+    }
+
+    .dragging-over * {
+      pointer-events: none;
+    }
+
+    #booktop {
+
+      position: absolute;
+      width: 220px;
+      height: 30px;
+      border-style: solid;
+      margin-left: 10px;
+      margin-right: 10px;
+      right: 130px;
+      left: 0px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.43);
+      border-left-width: 0px;
+      border-top-width: 0px;
+      border-right-width: 0px;
+      margin-top: 5px;
+
+    }
+
+    .rannum.hover {}
+  </style>
+</head>
+
+<body class="mdui-theme-accent-blue" style="position: relative;z-index: -7;">
+
+  <!-- 主体div -->
+  <div class="main" id="main" style="z-index: -6;position: relative;">
+    <div class="icon">
+      <img src="https://pic.imgdb.cn/item/61e17c9d2ab3f51d919088cb.png" class="icon-main mdui-shadow-24"
+        id="icon-maina" />
+      <script>
+        let i = document.getElementById("icon-maina");
+        let marginsum = ((document.body.clientWidth - 300) / document.body.clientWidth) * 50;
+        i.style.marginLeft = marginsum + "%";
+      </script>
+    </div>
+    <div class="searchmain">
+      <div id="search" class="search mdui-hoverable mdui-color-black-100"
+        style="border-left-width: 1px;border-left-style: solid;border-top-width: 1px;border-top-style: solid;border-bottom-width: 1px;border-bottom-style: solid;border-right-width: 1px;border-right-style: solid;margin-top: 50px;padding-top: 18px;height: 70px;padding-left: 15px;padding-bottom: 4px;width: 681px;position: relative;">
+        <select name="city" lay-verify="" class="mdui-select" mdui-select="{position: 'bottom'}">
+          <option value="5">图书检索</option>
+          <option value="1">
+            百度</option>
+          <option value="2">知乎</option>
+          <option value="3">必应</option>
+          <option value="4">360</option>
+        </select>
+        <div class="mdui-textfield mdui-textfield-floating-label" id="searchtext"
+          style="top: -24px;height: 60px;padding-bottom: 3px;">
+          <label class="mdui-textfield-label" style="position: absolute;" id="inputs">在这里输入书名/ISBN检索图书</label>
+          <script>
+            let t = document.getElementById("searchtext");
+            let tx = document.getElementById("search");
+            let txx = document.getElementById("inputs");
+            if (document.body.clientWidth <= 768) {
+              console.log("yesps");
+              t.style.width = 170 + "px";
+              tx.style.justifyContent = "space-between";
+              inputs.innerHTML = "输入图书开始检索";
+              txx.style.top = -21 + "px";
+              tx.style.marginLeft = 16 + "px";
+            }
+          </script>
+          <input class="mdui-textfield-input" id="mdui-textfield-input"
+            style="padding-bottom: 5px;position: absolute;top: 24px;height:35px;" />
+        </div>
+        <div style="height: 50px;" id="vue-area2">
+          <a-drawer height="550px" title="🔍搜索结果" placement="bottom" :closable="true" :visible="visible" :mask="false"
+            @close="onClose">
+            <div class="load" v-if="spinning == true" style="margin:0 auto;">
+              <a-spin :spinning="spinning" tip="正在搜索中..."></a-spin>
+            </div>
+            <div id="indrawer" style="width: 100%;height:100%">
+
+            </div>
+
+
+
+          </a-drawer>
+          <button class="mdui-btn mdui-ripple" id="submit"
+            style="padding-left: 0px;padding-right: 0px;margin-top: -19px;height:70px;" @click="submitend()">
+
+            <a-icon type="file-search"
+              style="width: 50px;height: 47px;padding-top: 8px;font-size: 40px;display: inline-block;" />
+            </i>
+
+
+          </button>
+        </div>
+        <div id="enter">
+          <div class="coenter mdui-ripple mdui-hoverable" id="coenterd1">
+            <div id="r1" class="rannum"
+              style="transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) 0s;background: red;height: 20px;top: 10px;left: 10px;line-height: 20px;border-radius: 5px;width:18px;color:white">
+              1</div>
+            <div id="coenter1" style="margin-left: 40px;transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) 0s;"></div>
+          </div>
+          <div class="coenter mdui-ripple mdui-hoverable" id="coenterd2">
+            <div id="r2" class="rannum"
+              style="transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) 0s;height: 20px;top: 10px;left: 10px;line-height: 20px;border-radius: 5px;width:18px;color:white;background: orange;">
+              2</div>
+            <div id="coenter2" style="margin-left: 40px;transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) 0s;"></div>
+          </div>
+          <div class="coenter mdui-ripple mdui-hoverable" id="coenterd3">
+            <div id="r3" class="rannum"
+              style="transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) 0s;height: 20px;top: 10px;left: 10px;line-height: 20px;border-radius: 5px;width:18px;color:white;background: #adad43;">
+              3</div>
+            <div id="coenter3" style="margin-left: 40px;transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) 0s;"></div>
+          </div>
+          <div class="coenter mdui-ripple mdui-hoverable" id="coenterd4">
+            <div id="r4" class="rannum"
+              style="transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) 0s;height: 20px;top: 10px;left: 10px;line-height: 20px;border-radius: 5px;width:18px;color:white;background-color: rgb(72, 71, 71);">
+              4</div>
+            <div id="coenter4" style="margin-left: 40px;transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) 0s;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ranks" style="z-index: -5;position: relative;">
+      <div class="rank-main" style="z-index: -4;position: relative;">
+        <div id="rows" style="width: 90%;">
+          <div class="mdui-col" id="db" draggable="true" data-id="1">
+            <div class="mdui-hoverable obj" id="db1">
+              <div id="booktop" style="width: 380px">
+                <div class="but mdui-hoverable" id="douban"
+                  style="width: 70px;margin-top: 5px;margin-left: 5px;margin-right: 5px;">豆瓣读书</div>
+                <div class="but mdui-hoverable" id="taobao"
+                  style="width: 70px;margin-top: 5px;;position: absolute;top: 0px;margin-left: 5px;margin-right: 5px;left: 80px;">
+                  当当新书</div>
+                  <div class="but mdui-hoverable" id="jd"
+                  style="width: 70px;margin-top: 5px;;position: absolute;top: 0px;margin-left: 5px;margin-right: 5px;left: 160px;">
+                  京东热卖</div>
+                  <div class="but mdui-hoverable" id="chinabook"
+                  style="width: 70px;margin-top: 5px;;position: absolute;top: 0px;margin-left: 5px;margin-right: 5px;left: 240px;">
+                  中图畅销</div>
+              </div>
+              <div id="bookbot"
+                style="color:white;display: inline;position: absolute;height: 220px;width: 250px;bottom: 20px;top: 30px;">
+                <div id="ranky"
+                  style="color:white;display: inline;position: absolute;height: 250px;width: 340px;left: 10px;bottom: 20px;top: 8px;">
+
+                  <div class="rankys2" style="margin-top: 15px;">
+                    <div id="rr1" class="rannum mdui-hoverable" style="top: 17px;background: red;">1</div>
+                    <div id="rr12" class="raninf2"></div>
+                    <div id="rr13" class="ranredu"></div>
+                  </div>
+                  <div class="rankys2">
+                    <div id="rr2" class="rannum mdui-hoverable" style="top: 43.5px;background: orange;">2</div>
+                    <div id="rr22" class="raninf2"></div>
+                    <div id="rr23" class="ranredu"></div>
+                  </div>
+                  <div class="rankys2">
+                    <div id="rr3" class="rannum mdui-hoverable" style="top: 70px;background: #adad43;">3</div>
+                    <div id="rr32" class="raninf2"></div>
+                    <div id="rr33" class="ranredu"></div>
+                  </div>
+                  <div class="rankys2">
+                    <div id="rr4" class="rannum mdui-hoverable" style="top: 96px;background-color: rgb(72, 71, 71);">4
+                    </div>
+                    <div id="rr42" class="raninf2"></div>
+                    <div id="rr43" class="ranredu"></div>
+                  </div>
+                  <div class="rankys2">
+                    <div id="rr5" class="rannum mdui-hoverable" style="top: 123px;background-color: rgb(72, 71, 71);">5
+                    </div>
+                    <div id="rr52" class="raninf2"></div>
+                    <div id="rr53" class="ranredu"></div>
+                  </div>
+                  <div class="rankys2">
+                    <div id="rr6" class="rannum mdui-hoverable" style="top: 150.5px;background-color: rgb(72, 71, 71);">
+                      6</div>
+                    <div id="rr62" class="raninf2"></div>
+                    <div id="rr63" class="ranredu"></div>
+                  </div>
+                  <div class="rankys2">
+                    <div id="rr7" class="rannum mdui-hoverable" style="top: 177.5px;background-color: rgb(72, 71, 71);">
+                      7</div>
+                    <div id="rr72" class="raninf2"></div>
+                    <div id="rr73" class="ranredu"></div>
+                  </div>
+                </div>
+              </div>
+              <div id="bookright" @click="modal1=true" class="mdui-hoverable"
+              style="cursor: pointer; position: absolute; height: 204px; width: 150px; left: 230px; border-radius: 5px; background: rgba(255, 255, 255, 0.86); margin-top: 40px; padding-bottom: 20px; margin-left: 10px; margin-right: 10px;">
+
+                <div id="bookcover" class="mdui-shadow-10"
+                  style="display:none;width: 100px;margin-top: 10px;height: 120px;margin-left: 25px;border-radius: 5px;z-index: 3;position: absolute;">
+                  <img id="bookc" src="https://pic.imgdb.cn/item/620868842ab3f51d9136e71d.png"
+                    style="width: 100%;height: 100%;border-radius: 5px;" referrerPolicy="no-referrer">
+                </div>
+                <div id="detail"
+                style="padding-right: 5px; text-align: center; width: 150px; position: absolute; top: 103px; height: 80px; overflow: hidden; padding-left: 5px; background: rgb(0, 171, 255); color: white;  padding-top: 32px;">
+                  在书名上悬停以查看详情或点击此处查看</div>
+                <div id="rank" class="mdui-hoverable"
+                  style="position: absolute; top: 180px; height: 24px; background: rgb(215, 255, 238); width: 150px; z-index: 1; text-align: center; margin-top: 0px; padding-top: 2px; color: rgb(0, 0, 0); border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;overflow: hidden;">
+                </div>
+                <a-modal v-model="modal1" title="🔥豆瓣图书TOP200">
+                  <div id="modal1d">
+
+                  </div>
+
+
+                </a-modal>
+              </div>
+            </div>
+          </div>
+          <div class="mdui-col" id="tq" draggable="true" data-id="2">
+            <div class="mdui-hoverable obj" id="tq1" draggable="false">
+
+              <div id="dateleft">
+                <div id="date-big" class="mdui-hoverable">
+                  <div class="icon-large icon-clock">
+                    <div class="clock">
+                      <div id="hour"></div>
+                      <div id="min"></div>
+                      <div id="sec"></div>
+                    </div>
+                    <label id="timee"></label>
+                  </div>
+                </div>
+                <div id="app">
+                  <a-tooltip placement="bottomLeft" :title="s">
+                    <div id="yiyan" class="mdui-hoverable mdui-ripple" style="margin-bottom: 7px;"></div>
+                  </a-tooltip>
+                </div>
+
+
+              </div>
+              <div id="dateright">
+                <div id="date" class="mdui-hoverable">
+                  <a-calendar :fullscreen="false" @panelChange="onPanelChange"></a-calendar>
+                </div>
+                <div id="year" class="mdui-hoverable mdui-ripple" style="padding-top: 2px;"></div>
+                <div id="info" class="mdui-hoverable mdui-ripple" style="padding-top: 2px;"></div>
+                <div id="app2">
+                  <a-tooltip placement="bottomLeft" :title="k">
+                    <div id="others" class="mdui-hoverable mdui-ripple"
+                      style="top: -3px;left: 5px;margin-top: 3px;margin-bottom: 3px;"></div>
+                  </a-tooltip>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mdui-col" id="ss1" draggable="true" data-id="3">
+            <div class="mdui-hoverable obj" id="ss1">
+
+              <div id="left-sel"
+                style="display: inline;position: absolute;top: auto;bottom: auto;height: 230px;width: 60px;border-bottom-left-radius: 20px;border-right: rgba(0, 0, 0, 0.43);border-style: solid;border-width:1px;border-left: hidden;border-top: hidden;border-bottom: hidden;margin-top: 10px;margin-bottom: 10px;">
+                <div class="but mdui-hoverable" id="baidu">百度</div>
+                <!--这是按钮-->
+                <div class="but mdui-hoverable" id="xinlang">新浪</div>
+                <div class="but mdui-hoverable" id="bilibili">哔哩</div>
+                <div class="but mdui-hoverable" id="sspai">少数</div>
+                <div class="but mdui-hoverable" id="52pojie">吾爱</div>
+              </div>
+              <div id="ranky"
+                style="color:white;display: inline;position: absolute;height: 250px;width: 340px;left: 60px;">
+                <div id="tit"
+                  style="text-align: center;margin-top: 10px;font-size: 20px;color: #0070ff;border-radius: 7px;background: #fff;margin-left: 20px;margin-right: 20px;">
+                  百度热搜</div>
+                <div class="rankys" style="margin-top: 15px;">
+                  <div id="r1" class="rannum mdui-hoverable" style="top: 55.2px;background: red;">1</div>
+                  <div id="r12" class="raninf"></div>
+                  <div id="r13" class="ranredu"></div>
+                </div>
+                <div class="rankys">
+                  <div id="r2" class="rannum mdui-hoverable" style="top: 81.8px;background: orange;">2</div>
+                  <div id="r22" class="raninf"></div>
+                  <div id="r23" class="ranredu"></div>
+                </div>
+                <div class="rankys">
+                  <div id="r3" class="rannum mdui-hoverable" style="top: 109.4px;background: #adad43;">3</div>
+                  <div id="r32" class="raninf"></div>
+                  <div id="r33" class="ranredu"></div>
+                </div>
+                <div class="rankys">
+                  <div id="r4" class="rannum mdui-hoverable" style="top: 136.3px;background-color: rgb(72, 71, 71);">4
+                  </div>
+                  <div id="r42" class="raninf"></div>
+                  <div id="r43" class="ranredu"></div>
+                </div>
+                <div class="rankys">
+                  <div id="r5" class="rannum mdui-hoverable" style="top: 163px;background-color: rgb(72, 71, 71);">5
+                  </div>
+                  <div id="r52" class="raninf"></div>
+                  <div id="r53" class="ranredu"></div>
+                </div>
+                <div class="rankys">
+                  <div id="r6" class="rannum mdui-hoverable" style="top: 190px;background-color: rgb(72, 71, 71);">6
+                  </div>
+                  <div id="r62" class="raninf"></div>
+                  <div id="r63" class="ranredu"></div>
+                </div>
+                <div class="rankys">
+                  <div id="r7" class="rannum mdui-hoverable" style="top: 217px;background-color: rgb(72, 71, 71);">7
+                  </div>
+                  <div id="r72" class="raninf"></div>
+                  <div id="r73" class="ranredu"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mdui-col" id="zh" draggable="true" data-id="4">
+            <div class="mdui-hoverable obj" id="zh1">
+
+              <div id="he-plugin-standard"></div>
+            </div>
+          </div>
+          <div class="mdui-col" id="sj" draggable="true" data-id="5">
+            <div class="mdui-hoverable obj" id="sj1">
+              <script src='https://gitee.com/itray25/privy-council/widget_preview' async defer></script>
+              <div id="osc-gitee-widget-tag"></div>
+              <style>
+                .osc_pro_color {
+                  color: #ffffff !important;
+                }
+
+                .osc_panel_color {
+                  background-color: #1e252b !important;
+                }
+
+                .osc_background_color {
+                  background-color: #323d47 !important;
+                }
+
+                .osc_border_color {
+                  border-color: #455059 !important;
+                }
+
+                .osc_desc_color {
+                  color: #d7deea !important;
+                }
+
+                .osc_link_color * {
+                  color: #99a0ae !important;
+                }
+
+                .osc_git_footer {
+                  height: 33px !important;
+                  border-bottom-left-radius: 5px;
+                  border-bottom-right-radius: 5px;
+                }
+
+                .osc_git_copyright {
+                  display: none !important;
+                }
+
+                .osc_git_box {
+                  border-radius: 5px !important;
+                }
+              </style>
+            </div>
+          </div>
+          <div class="mdui-col" id="zd" draggable="true" data-id="6">
+            <div class="mdui-hoverable obj" id="zd1"></div>
+          </div>
+          <div class="mdui-col" id="zd" draggable="true" data-id="6">
+            <div class="mdui-hoverable obj" id="zd1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="vue-area">
+      <a-drawer width="350px" title="🚩小组件管理" placement="right" :closable="true" :visible="visible" :mask="false"
+        @close="onClose">
+        <div slot="extra">
+          <a-button style="margin-right: 8px" @click="onClose">Cancel</a-button>
+          <a-button type="primary" @click="onClose">Submit</a-button>
+        </div>
+        <div class="mdui-card" style="margin-bottom: 10px;border-radius: 5px;width:290px">
+          <div class="mdui-card-media">
+            <img src="https://pic.imgdb.cn/item/6224186a5baa1a80abfd1ec7.jpg" />
+            <div class="mdui-card-media-covered mdui-card-media-covered-top">
+              <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">小组件</div>
+                <div class="mdui-card-primary-subtitle">自由设置首页小组件</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a-card title="🌐功能小组件设置" style="width: 290px;border-radius: 5px;margin-top: 20px;" hoverable="true"
+          class="xxxxcard">
+          <a slot="extra">
+            <a-popover title="说明">
+              <template slot="content">
+                <p>功能小组件仅支持使用一次</p>
+                <p>在这里设置显示/隐藏</p>
+              </template>
+              使用说明
+            </a-popover>
+          </a>
+
+          <a-card title="📕图书聚合小组件" :bordered="false" style="height: 40px;" class="cardsx">
+            <div slot="extra">
+              <a-switch v-model="switch1" @change="changedb">
+                <a-icon slot="checkedChildren" type="check"></a-icon>
+                <a-icon slot="uncheckedChildren" type="close"></a-icon>
+              </a-switch>
+            </div>
+          </a-card>
+          <a-card title="🕗日期时间小组件" :bordered="false" style="height: 40px;" class="cardsx">
+            <div slot="extra">
+              <a-switch v-model="switch2" @change="changetq">
+                <a-icon slot="checkedChildren" type="check"></a-icon>
+                <a-icon slot="uncheckedChildren" type="close"></a-icon>
+              </a-switch>
+            </div>
+          </a-card>
+          <a-card title="🎁热度排行小组件" :bordered="false" style="height: 40px;" class="cardsx">
+            <div slot="extra">
+              <a-switch v-model="switch3" @change="changess">
+                <a-icon slot="checkedChildren" type="check"></a-icon>
+                <a-icon slot="uncheckedChildren" type="close"></a-icon>
+              </a-switch>
+            </div>
+          </a-card>
+          <a-card title="⛅天气小组件" :bordered="false" style="height: 40px;" class="cardsx">
+            <div slot="extra">
+              <a-switch v-model="switch4" @change="changezh">
+                <a-icon slot="checkedChildren" type="check"></a-icon>
+                <a-icon slot="uncheckedChildren" type="close"></a-icon>
+              </a-switch>
+            </div>
+          </a-card>
+          <a-card title="👍Gitee代码库" :bordered="false" style="height: 40px;" class="cardsx">
+            <div slot="extra">
+              <a-switch v-model="switch5" @change="changesj">
+                <a-icon slot="checkedChildren" type="check"></a-icon>
+                <a-icon slot="uncheckedChildren" type="close"></a-icon>
+              </a-switch>
+            </div>
+          </a-card>
+
+        </a-card>
+
+        <a-card title="🧪实验性内容" style="width: 290px;border-radius: 5px;margin-top: 20px;" hoverable="true"
+          class="xxxxcard">
+          <a slot="extra">
+            <a-popover title="说明">
+              <template slot="content">
+                <p>实验性内容</p>
+                <p>测试后将上线正式版本</p>
+              </template>
+              注意
+            </a-popover>
+          </a>
+
+          <a-card title="背景特效1" :bordered="false" style="height: 40px;" class="cardsx">
+            <div slot="extra">
+              <a-switch v-model="switchbg1" @change="changebg1">
+                <a-icon slot="checkedChildren" type="check"></a-icon>
+                <a-icon slot="uncheckedChildren" type="close"></a-icon>
+              </a-switch>
+            </div>
+          </a-card>
+        </a-card>
+
+        <a-card title="自定义图标组件" icon="ios-options" :padding="0"
+          style="width:290px;border-radius: 10px;margin-top: 10px;" class="drage">
+          <div id="drag">
+            <p>Some contents...</p>
+
+          </div>
+
+        </a-card>
+        <img src="https://api.928wang.cn/api/ipqmd" style="margin-top: 10px;border-radius: 5px;width:290px"
+          class="mdui-hoverable">
+
+
+
+
+
+
+
+
+      </a-drawer>
+      <a-affix :offset-bottom="40">
+        <a-tooltip title="管理小组件" placement="left"
+          style="position: absolute;bottom: -10px;right: 30px;width: 60px !important;height: 60px !important;">
+
+          <a-button id="addbut" @click="success();value1 = true;showDrawer()" class="mdui-ripple mdui-shadow-10"
+            :size="buttonSize" type="primary" shape="circle" style="right: 20px;">
+            <a-icon type="switcher" theme="twoTone" style="font-size: 40px;padding-top: 2px;"
+              two-tone-color="#91ccff" />
+            </abutton>
+        </a-tooltip>
+
+      </a-affix>
+
+    </div>
+  </div>
+  <div id="diji">
+    <canvas id="canvas"></canvas>
+    <canvas id="canvas-bg"></canvas>
+  </div>
+  <script src="./css/jq.js"></script>
+  <script src="./js/mdui.min.js"></script>
+
+  <script>
+    WIDGET = {
+      "CONFIG": {
+        "layout": "1",
+        "width": "400",
+        "height": "250",
+        "background": "5",
+        "dataColor": "FFFFFF",
+        "borderRadius": "10",
+        "key": "7836e06032bd4edfba0c44b91a019e2c"
+      }
+    }
+  </script>
+  <script type="text/javascript" src="./css/vue.js"></script>
+  <script src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"></script>
+  <script src="./css/st.js"></script>
+  <script src="./css/particle.js"></script>
+  <script src="http://cdn.staticfile.org/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./css/antd.js"></script>
+  <script src="./css/xxx/jquery.raty.js"></script>
+
+
+
+
+
+  <script>
+    "use strict"
+
+    //window.setTimeout(function(){
+    //  $("#diji").css("height", $("#main").height());
+    //  $('#diji').particleground({
+    //dotColor: '#cdda5a',
+    //lineColor: '#eda'
+    //});
+    //  },1000)
+
+
+    var display;
+    if (localStorage.getItem("display") == null) {
+      display = { '#zd': "block", '#db': "block", '#zh': "block", '#sj': "block", '#tq': "block", '#ss1': "block", '#bg1': "block" };
+      localStorage.setItem("display", JSON.stringify(display));
+    }
+    else {
+      display = JSON.parse(localStorage.getItem("display"));
+    }
+    var dictvue1 = { 'block': true, 'none': false };
+    var xvue = display['#db'];
+    var xvue2 = display['#tq'];
+    var xvue3 = display['#zh'];
+    var xvue4 = display['#ss1'];
+    var xvue5 = display['#sj'];
+    var xvue6 = display['#bg1'];
+
+    //function-小组件可拖动
+
+    new Sortable(rows, {
+      //group:"name",
+      group: {
+        name: 'shared',
+      },
+      animation: 250,
+      ghostClass: 'blue-background-class',
+      store: {
+        get: function (sortable) {
+          var order = localStorage.getItem("s");
+          return order ? order.split('|') : [];
+        },
+        set: function (sortable) {
+          var order = sortable.toArray();
+          localStorage.setItem("s", order.join('|'));
+        }
+      }
+    });
+
+
+
+
+    //data-一言
+    var aut = "";
+    var from = "";
+    var mes = document.getElementById("yiyan");
+    $.getJSON("https://v1.hitokoto.cn/?c=d&c=i&encode=json", function (result) {
+      document.getElementById("yiyan").innerHTML = ("\“" + result.hitokoto + "\”");
+      aut = result.from_who;
+      from = result.from;
+      if (aut == null) {
+        aut = "";
+      }
+    });
+    //end
+
+
+    //data-豆瓣图书
+    var lsvar = { data: {} };
+    var doubanlist = {};
+    function doubanul(json) {
+      $("#rr12").html(json.data[0].name);
+      $("#rr22").html(json.data[1].name);
+      $("#rr32").html(json.data[2].name);
+      $("#rr42").html(json.data[3].name);
+      $("#rr52").html(json.data[4].name);
+      $("#rr62").html(json.data[5].name);
+      $("#rr72").html(json.data[6].name);
+      for (let lsvar2 = 1; lsvar2 <= 7; lsvar2++) {
+        $(`#rr${lsvar2}2`).attr("onclick", "window.open(\"" + json.data[lsvar2 - 1].url + "\")");
+      }
+      doubanlist = json;
+    }
+    function getdouban() {
+      fetch("https://api.bookmeet.tk/douban").then(data => data.json()).then(json => lsvar = json).then(json => doubanul(json));
+    }
+    getdouban();
+    document.getElementById("douban").addEventListener("mouseover", function () {
+      getdouban();
+    })
+
+    function getdangdang() {
+      fetch("https://api.bookmeet.tk/dangdang").then(data => data.json()).then(json => lsvar = json).then(json => doubanul(json));
+    }
+    document.getElementById("taobao").addEventListener("mouseover", function () {
+      getdangdang();
+    })
+
+    function getjd() {
+      fetch("https://api.bookmeet.tk/jd").then(data => data.json()).then(json => lsvar = json).then(json => doubanul(json));
+    }
+    document.getElementById("jd").addEventListener("mouseover", function () {
+      getjd();
+    })
+
+    function getcb() {
+      fetch("https://api.bookmeet.tk/bookschina").then(data => data.json()).then(json => lsvar = json).then(json => doubanul(json));
+    }
+    document.getElementById("chinabook").addEventListener("mouseover", function () {
+      getcb();
+    })
+    //end
+    var arr1 = new Array(200);
+    var arr2 = new Array(200);
+
+
+
+    //style&function-搜索栏下拉框
+    var xasw;
+    function checkx() {
+      if (xasw.s[0] == undefined) {
+        $("#coenter1").html("");
+        $("#coenterd1").css({ "height": "0px", "margin": "0px" });
+
+      }
+      else {
+        $("#coenter1").html(xasw.s[0]);
+        $("#coenterd1").css({ "height": "40px", "margin": "3px" });
+      }
+      if (xasw.s[1] == undefined) {
+        $("#coenter2").html("");
+        $("#coenterd2").css({ "height": "0px", "margin": "0px" });
+
+      }
+      else {
+        $("#coenter2").html(xasw.s[1]);
+        $("#coenterd2").css({ "height": "40px", "margin": "3px" });
+
+      }
+      if (xasw.s[2] == undefined) {
+        $("#coenter3").html("");
+        $("#coenterd3").css({ "height": "0px", "margin": "0px" });
+      }
+      else {
+        $("#coenter3").html(xasw.s[2]);
+        $("#coenterd3").css({ "height": "40px", "margin": "3px" });
+      }
+      if (xasw.s[3] == undefined) {
+        $("#coenter4").html("");
+        $("#coenterd4").css({ "height": "0px", "margin": "0px" });
+      }
+      else {
+        $("#coenter4").html(xasw.s[3]);
+        $("#coenterd4").css({ "height": "40px", "margin": "3px" });
+
+      }
+    }
+    function xas(data) {
+      xasw = data;
+      checkx();
+    }
+    //end
+
+
+    //function-搜索按钮跳转
+
+    //end
+
+
+    //style&function-搜索栏
+    function getbaidu() {
+      $.ajax({
+        type: "GET",
+        url: "https://suggestion.baidu.com/su?wd=" + $(".mdui-textfield-input").val() + "&p=3&cb=xas",
+        dataType: "jsonp",
+        jsonpCallback: "search_data",
+        success: function (data) {
+          xas(data);
+        }
+      });
+    }
+
+    $("#coenter1").on("click", function () {
+      document.getElementById("mdui-textfield-input").value = xasw.s[0];
+      $(".coenter").css({ "height": "40px", "margin": "3px" });
+      $("#mdui-textfield-input").focus();
+    });
+    $("#coenter2").on("click", function () {
+      document.getElementById("mdui-textfield-input").value = xasw.s[1];
+      $(".coenter").css({ "height": "40px", "margin": "3px" });
+      $("#mdui-textfield-input").focus();
+    });
+    $("#coenter3").on("click", function () {
+      document.getElementById("mdui-textfield-input").value = xasw.s[2];
+      $(".coenter").css({ "height": "40px", "margin": "3px" });
+      $("#mdui-textfield-input").focus();
+    });
+    $("#coenter4").on("click", function () {
+      document.getElementById("mdui-textfield-input").value = xasw.s[3];
+      $(".coenter").css({ "height": "40px", "margin": "3px" });
+      $("#mdui-textfield-input").focus();
+    });
+    document.addEventListener("input", function () {
+      if ($('#mdui-textfield-input').is(":focus")) {
+        setTimeout(function () {
+          if ($(".mdui-textfield-input").val() != "") {
+            getbaidu();
+          }
+        }, 10)
+      }
+
+
+
+
+
+
+
+    });
+
+    for (let i = 1; i <= 4; i++) {
+      $(`#coenterd${i}`).on("mouseover", function () {
+        $(`#r${i}`).css({ "left": "30px" });
+        $(`#coenter${i}`).css({ "padding-left": "20px" });
+      });
+      $(`#coenterd${i}`).on("mouseout", function () {
+        $(`#r${i}`).css({ "left": "10px" });
+        $(`#coenter${i}`).css({ "padding-left": "0px" });
+      });
+      $(`#coenter${i}`).on("click", function () {
+        document.getElementById("mdui-textfield-input").value = xasw.s[i - 1];
+        $(".coenter").css({ "height": "40px", "margin": "3px" });
+      });
+    }
+
+    $(document).on('click', function () {
+      if ($('#searchtext').attr('class') != "mdui-textfield mdui-textfield-floating-label mdui-textfield-not-empty mdui-textfield-focus") {
+        $(".coenter").css({ "height": "0px", "margin": "0px" });
+
+      }
+      else {
+        getbaidu();
+        
+      }
+    });
+    $(document).on('keydown', function () {
+
+        if(window.event.keyCode==13){
+          if ($('#mdui-textfield-input').is(":focus")) {
+            Main5.submitend()
+          }
+          
+        
+
+      }
+    })
+    //end
+
+
+    //function-搜索框自适应low
+    window.addEventListener("resize", function () {
+      let marginsum = ((document.body.clientWidth - 300) / document.body.clientWidth) * 50;
+      i.style.marginLeft = marginsum + "%";
+    });
+    //end    
+
+
+    //data-日期时间小组件
+    var date = new Date();
+    var yyyy = date.getFullYear();
+    var mm = date.getMonth();
+    var dd = date.getDate()
+    var da = date.getDay();
+    var daylist = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
+    if (da == 0) {
+      document.getElementById("year").innerHTML = daylist[6];
+    }
+    else {
+      document.getElementById("year").innerHTML = daylist[da - 1];
+    }
+
+    $.getJSON("https://api.djapi.cn/wannianli/get?token=ee18a798c2caf99085ee72a10482fdb8", function (result) {
+      $("#info").html((result.Result.nongli).slice(0, result.Result.nongli.length - 6));
+    });
+    var eh;
+    $.getJSON("https://v2.alapi.cn/api/eventHistory?token=d8oLAGFCR4tPdmWX", function (result) {
+      eh = result.data;
+    });
+    //end
+
+
+
+    //data-热搜小组件
+    function getData(url) {
+      fetch(url).then(
+        data => data.json()).then(
+          result => {
+            $("#tit").text(result.data.name);
+            for (let lsvar2 = 1; lsvar2 <= 7; lsvar2++) {
+              $(`#r${lsvar2}2`).attr("onclick", "window.open(\"" + result.data.list[lsvar2 - 1].link + "\")");
+              $(`#r${lsvar2}2`).text(result.data.list[lsvar2 - 1].title);
+              $(`#r${lsvar2}3`).text(result.data.list[lsvar2 - 1].other);
+            }
+          })
+    }
+
+    function getss() {
+      $.getJSON("https://v2.alapi.cn/api/tophub/get?type=sspai&token=ezzBqaNJCWror0cG", function (result) {
+        $("#tit").text(result.data.name);
+        for (let lsvar2 = 1; lsvar2 <= 7; lsvar2++) {
+          $(`#r${lsvar2}2`).attr("onclick", "window.open(\"" + result.data.list[lsvar2 - 1].link + "\")");
+          $(`#r${lsvar2}2`).text(result.data.list[lsvar2 - 1].title);
+          $(`#r${lsvar2}3`).text("");
+        }
+      });
+    }
+
+    //监听按钮悬停
+    window.setTimeout(function () {
+      $(".osc_git_issuecommits").first().css("display", "none");
+      $(".osc_git_issuecommits ul li").eq(2).css("display", "none");
+      $(".osc_background_color").css("padding-top", (250 - 45.05 - $(".osc_git_main").height()) + "px");
+      window.setTimeout(function () {
+        $(".osc_git_issuecommits").first().css("display", "none");
+        $(".osc_git_issuecommits ul li").eq(2).css("display", "none");
+        $(".osc_background_color").css("padding-top", (250 - 45.05 - $(".osc_git_main").height()) + "px");
+
+      }, 50);
+    }, 50);
+    document.getElementById("xinlang").addEventListener("mouseover", function () {
+      getData("https://v2.alapi.cn/api/tophub/get?type=xl&token=ezzBqaNJCWror0cG");
+    })
+    document.getElementById("baidu").addEventListener("mouseover", function () {
+      getData("https://v2.alapi.cn/api/tophub/get?type=baidu&token=ezzBqaNJCWror0cG");
+    })
+    document.getElementById("sspai").addEventListener("mouseover", function () {
+      getss();
+    })
+    document.getElementById("52pojie").addEventListener("mouseover", function () {
+      getData("https://v2.alapi.cn/api/tophub/get?type=52pojie&token=ezzBqaNJCWror0cG");
+    })
+    document.getElementById("bilibili").addEventListener("mouseover", function () {
+      getData("https://v2.alapi.cn/api/tophub/get?type=bilibili&token=ezzBqaNJCWror0cG");
+    })
+
+    $(document).ready(function () {
+
+      $("#db").css("display", display["#db"]);
+      $("#ss1").css("display", display["#ss1"]);
+      $("#sj").css("display", display["#sj"]);
+      $("#zh").css("display", display["#zh"]);
+      $("#tq").css("display", display["#tq"]);
+      $("#diji").css("display", display["#bg1"]);
+
+      window.setTimeout(function () {
+        xeee.s = "from " + aut + "《" + from + "》"; $(".wv-lt-refresh").html("");
+
+      }, 5000);
+      $(".ant-fullcalendar-header").css({ "position": "absolute", "width": "261px", "background-color": "white", "border-radius": "5px", "z-index": "4", "left": "-26px", "padding-left": "3px", "padding-right": "3px", "padding-top": "3px", "padding-bottom": "3px", "top": "140px", "display": "none", })
+
+
+      getData("https://v2.alapi.cn/api/tophub/get?type=baidu&token=ezzBqaNJCWror0cG");
+      var im = -1;
+      var xa;
+
+      var timer = window.setInterval(function () {
+        if (im == 8) {
+          im = 0;
+        }
+        else {
+          im++;
+        }
+
+      }
+        , 4000);
+
+    });
+    var lsvar3 = 1;
+    var lsvar4 = 1;
+    window.setTimeout(function () {
+      $(".ant-fullcalendar-tbody").on("mouseover", function () {
+        lsvar3 = 0;
+      })
+      $(".ant-fullcalendar-header").on("mouseover", function () {
+        lsvar4 = 0;
+      })
+      $(".ant-fullcalendar-tbody").on("mouseout", function () {
+        lsvar3 = 1;
+      })
+      $(".ant-fullcalendar-header").on("mouseout", function () {
+        lsvar4 = 1;
+      })
+      window.setInterval(function () {
+        if (lsvar3 * lsvar4 == 1) {
+          $(".ant-fullcalendar-header").css("display", "none");
+        }
+        if (lsvar3 * lsvar4 == 0) {
+          $(".ant-fullcalendar-header").css("display", "block");
+        }
+      }, 100)
+
+    }, 3000)
+
+
+
+    //end
+
+
+    //function-iOS风格时钟,转载自https://www.cnblogs.com/dadatu/p/4372367.html
+    window.requestAnimFrame = (function () {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function (callback) {
+          window.setTimeout(callback, 1000 / 60);
+        };
+    })();
+    (function clock() {
+      var hour = document.getElementById("hour"),
+        min = document.getElementById("min"),
+        sec = document.getElementById("sec");
+      (function loop() {
+        requestAnimFrame(loop);
+        draw();
+      })();
+      function draw() {
+        var now = new Date(),
+          then = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0),
+          diffInMil = (now.getTime() - then.getTime()),
+          h = (diffInMil / (1000 * 60 * 60)),
+          m = (h * 60),
+          s = (m * 60);
+        sec.style.webkitTransform = "rotate(" + (s * 6) + "deg)";
+        hour.style.webkitTransform = "rotate(" + (h * 30 + (h / 2)) + "deg)";
+        min.style.webkitTransform = "rotate(" + (m * 6) + "deg)";
+      }
+    })();
+    //end
+
+
+    //function-时钟下时间显示
+    function get() {
+      var time = new Date();
+      var hour = time.getHours();
+      var minutes = time.getMinutes();
+      var seconds = time.getSeconds();
+      if (hour < 10) {
+        hour = "0" + hour;
+      }
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
+      document.getElementById("timee").innerHTML = hour + ":" + minutes + ":" + seconds;
+      setTimeout('get()', 1000);
+    }
+    get();
+    //end
+
+    //data-历史上的今天轮播
+    var ehnum = -1;
+    var obj2 = { k: "" };
+    setInterval(function () {
+      if (ehnum == 9) {
+        ehnum = 0;
+      }
+      else {
+        ehnum++;
+      }
+      obj2.k = eh[ehnum].date + "-" + eh[ehnum].title;
+      $("#others").html("历史上的今天 " + eh[ehnum].date);
+    }, 3000);
+    //end
+
+
+    //data-豆瓣小组件
+    for (let l = 1; l <= 7; l++) {
+      $(`#rr${l}2`).on("mouseover", function () {
+        $("#bookc").attr("src", lsvar.data[l - 1].img);
+        $("#bookcover").css({ "display": "block" });
+        $("#detail").text(lsvar.data[l - 1].name);
+        $("#detail").css({ "padding-top": "32px" });
+        $("#rank").text("BY " + lsvar.data[l - 1].author.split("·")[0]);
+      })
+    }
+    console.log(lsvar);
+
+    var xn = 2;
+    var qwqa = window.setInterval(function () {
+      if ($("#modal1d").html() == "" | $("#modal1d").html() == undefined) {
+        if (lsvar.data[(xn - 1)] != undefined) {
+          for (xn = 1; xn <= 200; xn++) {
+
+            $("#modal1d").append(`                <div class="rankys">
+      <div id="r2" class="rannum mdui-hoverable" style="position:absolute;margin-top:2px;color:white;line-height:17px;background: rgb(72, 71, 71);line-height:17px;width:unset;padding-left:3px;padding-right:3px">${xn}</div>
+      <div id="r22" class="raninf" style="padding-left:35px" ><a id="rrr${xn - 1}" class="rrra">${lsvar["data"][xn - 1].name}</a></div>
+      <div id="r23" class="ranredu">${lsvar["data"][xn - 1].author}</div>
+    </div>`);
+            $("#rrr" + (xn - 1)).attr("href", lsvar["data"][xn - 1].url);
+            arr1[xn - 1] = lsvar["data"][xn - 1].author;
+            arr2[0] = 1;
+            arr2[xn] = xn + 1;
+          }
+        }
+        else {
+        }
+      }
+      else {
+        clearInterval(qwqa);
+      }
+
+
+    }, 100)
+
+
+
+
+
+    //end    
+
+
+
+    //end
+
+
+    //frame-vue实例化***
+    var xeee = { s: "" };
+    var Main = new Vue({
+      el: "#app",
+
+      data: xeee,
+    })
+    var Main5 = new Vue({
+      el: "#vue-area2",
+      methods: {
+
+        submitend() {
+
+
+          if (document.getElementById("mdui-textfield-input").value != "") {
+            if ($(".mdui-select").val() == 1) {
+              window.location.href = "http://www.baidu.com/s?wd=" + document.getElementById("mdui-textfield-input").value;
+            }
+            if ($(".mdui-select").val() == 2) {
+              window.location.href = "https://www.zhihu.com/search?type=content&q=" + document.getElementById("mdui-textfield-input").value;
+            }
+            if ($(".mdui-select").val() == 3) {
+              window.location.href = "http://www.bing.com/search?q=" + document.getElementById("mdui-textfield-input").value;
+            }
+            if ($(".mdui-select").val() == 4) {
+              window.location.href = "https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q=" + document.getElementById("mdui-textfield-input").value;
+            }
+            else {
+              this.visible = true;
+              $("#indrawer").parent().parent().parent().css("width","100%");
+              $("#indrawer").children().remove();
+              var jsonout;
+
+              function df(json) {
+                jsonout = json;
+                Main5.$data.spinning = false;
+                if (json.data.length == 0) {
+                  $("#indrawer").append(`<div id="aou"><i class="mdui-icon material-icons mdui-icon-dark">Error: 404 Not Found</i><p>未找到图书</p></div>`);
+                }
+                else {
+
+                  $("#indrawer").append(`<div id="drawergrid" style="grid-template-columns: repeat(auto-fill,500px);width: 90%;grid-template-rows: repeat(auto-fill,350px);;display: grid;margin:0 auto;"></div>`);
+
+                  for (var ls3 = 0; ls3 <= json.data.length; ls3++) {
+                    var aut;
+                    var rt;
+                    if (json.data[ls3].author == "") {
+                      aut = "未知";
+                    }
+                    else { aut = json.data[ls3].author }
+                    if (json.data[ls3].rate == 0) {
+                      rt = "暂无评分";
+                    }
+                    else { rt = json.data[ls3].rate }
+                    $("#drawergrid").append(`              <div class="test" style="grid-column:1 span;grid-row:1 span;white-space: nowrap;">
+                <div class="dgmain">
+                  <div class="dgnum mdui-shadow-5">${"#" + (ls3 + 1)}</div>
+                  <div class="dgleft"><img src=${json.data[ls3].img} referrerPolicy="no-referrer" class="dgimg mdui-hoverable" href=${json.data[ls3].url}></img>
+                  </div>
+                  
+                  <div class="dgright">
+                    <a class="dgti mdui-shadow-2" target="_blank" href=${json.data[ls3].url}>${json.data[ls3].name}</a>
+                    <div class="dgdisc">
+                      <p class="dgau">作者：&nbsp;${aut}</p>
+                    <div id=${"star" + ls3} style="display: inline-block; margin-left: 10px;position: absolute;cursor: pointer;top: 53px;"></div><div class="dgyear" style="display:inline-block">${rt}</div>
+                    <div id=${"class" + ls3} class="dgclass">分类：&nbsp;查询中</div>
+</div>
+
+                    <a class="dgurl mdui-shadow-5 mdui-hoverable" href=${json.data[ls3].url} target="_blank">详情</a>
+                  </div>
+                </div>
+
+              </div>`)
+                    $('#star' + ls3).raty({ score: json.data[ls3].rate / 2 });
+                  }
+                }
+              }
+              Main5.$data.spinning = true;
+              fetch("https://api.bookmeet.tk/search?q=" + document.getElementById("mdui-textfield-input").value).then(data => data.json()).then(json => df(json))
+              window.setTimeout(function () {
+                for (var ls4 = 0; ls4 < jsonout.data.length; ls4++) {
+                  var lsvar7 = jsonout.data[ls4].url;
+                  if (lsvar7.split("subject%2F")[1] == undefined) {
+                    $("#class" + ls4).text("分类：未知");
+                  }
+                  else {
+                    function jsonpro(json) {
+                      var jsonn;
+                      jsonn = json;
+                      //console.log(jsonn.data.prototype.isPrototypeOf(obj) && obj.length === 0)
+                      //console.log(jsonn)
+                      if (jsonn.data[0] == undefined) {
+                        console.log(jsonn)
+                        $("#class" + jsonn.id).text("分类：未知");
+                      }
+                      else {
+                        //console.log(jsonn.data.slice(0,2).join(" / "))
+                        //console.log("#class"+jsonn.id)
+                        $("#class" + jsonn.id).text("分类：" + jsonn.data.slice(0, 2).join(" / "));
+                      }
+                    }
+                    function jsonch(url) {
+                      var anss;
+                      console.log(url + ls4);
+
+                      fetch("https://api.cospi.tk/pred?id=" + url + "&idd=" + ls4).then(data => data.json()).then(json => jsonpro(json))
+
+                    }
+                    var lsvar8 = lsvar7.split("subject%2F")[1].split("%2F")[0];
+
+                    jsonch(lsvar8);
+
+                  }
+                  window.setInterval(500);
+                }
+              }, 5000)
+            }
+          } else {
+            this.$message.warning('请输入内容！');
+          }
+
+
+        },
+        onClose() {
+          this.visible = false;
+        },
+      }, data() {
+        return {
+          visible: false,
+          spinning: true
+        }
+      }
+
+    })
+    var Main4 = new Vue({
+      el: "#date",
+
+      methods: {
+        onPanelChange(value, mode) {
+          console.log(value, mode);
+        },
+      }
+    })
+
+
+
+    var Main2 = new Vue({
+      el: "#app2",
+
+      data: obj2,
+    })
+    var Main3 = new Vue({
+      el: "#bookright",
+      methods: {
+        s() {
+          modal1 = true;
+        }
+
+      },
+      data() {
+        return {
+          modal1: false,
+        }
+      }
+    })
+    new Vue({
+      el: "#vue-area",
+
+      methods: {
+        onPanelChange(value, mode) {
+          console.log(value, mode);
+        },
+        showDrawer() {
+          this.visible = true;
+          window.setTimeout(function () {
+            $(".cardsx").children(".ant-card-head").css({ "padding-left": "0px", "padding-right": "0px" });
+            $(".xxxxcard").children(".ant-card-body").css({ "padding-top": "0px" });
+            $(".ant-drawer-content").css({ "width": "350px", "background": "rgba(255, 255, 255, 0.8)", "backdrop-filter": "blur(13px)" });
+            var el = $(".drage").children(".ant-card-body")[0];
+            new Sortable(el, {
+              //group:"name",
+              sort: false,
+              group: {
+                name: 'shared',
+                pull: 'clone',
+                put: false // 不允许拖拽进这个列表
+              },
+              animation: 250,
+              ghostClass: 'blue-background-class',
+            });
+          }, 100)
+        },
+        onClose() {
+          this.visible = false;
+        },
+        handleReachBottom() {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              const last = this.list1[this.list1.length - 1];
+              const last2 = this.list2[this.list2.length - 1];
+              for (let i = 1; i < 200; i++) {
+                this.list1.push(last + i);
+                this.list2.push(last2 + i);
+              }
+              resolve();
+            }, 2000);
+          });
+        },
+        success() {
+          this.$message.success('拖动组件至左侧以添加');
+        },
+        changezh(status) {
+          if (status == true) {
+            $("#zh").css("display", "block");
+            this.$message.success('天气组件添加成功');
+            display["#zh"] = "block";
+            localStorage.setItem("display", JSON.stringify(display));
+          }
+          else {
+            $("#zh").css("display", "none");
+            this.$message.info('天气组件隐藏');
+            display["#zh"] = "none";
+            localStorage.setItem("display", JSON.stringify(display));
+
+          }
+        },
+        changedb(status) {
+          if (status == true) {
+            $("#db").css("display", "block");
+            this.$message.success('图书组件添加成功');
+            display["#db"] = "block";
+            localStorage.setItem("display", JSON.stringify(display));
+          }
+          else {
+            $("#db").css("display", "none");
+            this.$message.info('图书组件隐藏');
+            display["#db"] = "none";
+            localStorage.setItem("display", JSON.stringify(display));
+
+          }
+        },
+        changesj(status) {
+          if (status == true) {
+            $("#sj").css("display", "block");
+            this.$message.success('gitee组件添加成功');
+            display["#sj"] = "block";
+            localStorage.setItem("display", JSON.stringify(display));
+          }
+          else {
+            $("#sj").css("display", "none");
+            this.$message.info('gitee组件隐藏');
+            display["#sj"] = "none";
+            localStorage.setItem("display", JSON.stringify(display));
+
+          }
+        },
+        changess(status) {
+          if (status == true) {
+            $("#ss1").css("display", "block");
+            this.$message.success('聚合热度组件添加成功');
+            display["#ss1"] = "block";
+            localStorage.setItem("display", JSON.stringify(display));
+          }
+          else {
+            $("#ss1").css("display", "none");
+            this.$message.info('聚合热度组件隐藏');
+            display["#ss1"] = "none";
+            localStorage.setItem("display", JSON.stringify(display));
+
+          }
+        },
+        changetq(status) {
+          if (status == true) {
+            $("#tq").css("display", "block");
+            this.$message.success('时间组件添加成功');
+            display["#tq"] = "block";
+            localStorage.setItem("display", JSON.stringify(display));
+          }
+          else {
+            $("#tq").css("display", "none");
+            this.$message.info('时间组件隐藏');
+            display["#tq"] = "none";
+            localStorage.setItem("display", JSON.stringify(display));
+
+          }
+        },
+        changebg1(status) {
+          if (status == true) {
+            $("#diji").css("display", "block");
+            this.$message.success('实验性内容开启,刷新即可查看！');
+            display["#bg1"] = "block";
+            localStorage.setItem("display", JSON.stringify(display));
+          }
+          else {
+            $("#diji").css("display", "none");
+            this.$message.info('实验性内容关闭');
+            display["#bg1"] = "none";
+            localStorage.setItem("display", JSON.stringify(display));
+
+          }
+        }
+      },
+      data() {
+        return {
+          buttonSize: 'large',
+          modal1: false,
+          value1: false,
+          switch1: dictvue1[xvue],
+          switch2: dictvue1[xvue2],
+          switch3: dictvue1[xvue4],
+          switch4: dictvue1[xvue3],
+          switch5: dictvue1[xvue5],
+          switchbg1: dictvue1[xvue6],
+          list1: arr2,
+          lsvar: lsvar,
+          list2: arr1
+          , visible: false,
+          tstyle: { "color": "#0785fd", "font-weight": "bold" }
+        }
+      },
+    })
+
+
+
+    //杂项
+    console.log("%c%c书觅院%", "line-height:28px;", "line-height:28px;padding:4px;background:#222;color:#fff;font-size:16px;margin-right:15px", "color:#3fa9f5;line-height:28px;font-size:16px;");
+    console.log('%c ', 'background-image:url("https://pic.imgdb.cn/item/61f0fbcc2ab3f51d91726e13.gif");background-size:120% 120%;background-repeat:no-repeat;background-position:center center;line-height:60px;padding:30px 120px;');
+    //end
+
+
+  </script>
+</body>
+
+</html>

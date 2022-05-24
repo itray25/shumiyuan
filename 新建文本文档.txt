@@ -1,0 +1,17 @@
+              <a-drawer id="mask2" width="350px" title="🚩小组件管理" placement="right" :closable="true" :visible="visible" :mask="true"
+        @close="onClose">
+              </a-drawer>
+
+@click="showDrawer()"
+methods:{
+        onClose() {
+          this.visible = false;
+        },
+        showDrawer() {
+          this.visible = true;
+      }},
+      data(){
+        return{
+          visible: false,
+        }
+      }

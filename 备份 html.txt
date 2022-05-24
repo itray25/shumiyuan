@@ -1,0 +1,16 @@
+<div id="drawergrid" style="grid-template-columns: repeat(auto-fill,500px);width: 90%;grid-template-rows: repeat(auto-fill,350px);;display: grid;margin:0 auto;">
+              <div class="test" style="grid-column:1 span;grid-row:1 span;white-space: nowrap;">
+                <div class="dgmain">
+                  <div class="dgleft"><img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.M9xz3FWrF7cjNwkcBpjvlAHaKe?w=204&h=289&c=7&r=0&o=5&pid=1.7" class="dgimg mdui-hoverable"></img>
+                  </div>
+                  
+                  <div class="dgright">
+                    <p class="dgti">山海经</p>
+                    <p class="dgyear">1145</p>
+                    <p class="dgau">秦始皇阿巴斯基</p>
+                    <div class="dgurl"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
